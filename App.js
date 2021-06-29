@@ -1,12 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {Component, useState} from 'react';
+import { Text, View, StyleSheet, Button } from 'react-native';
+import Constants from 'expo-constants';
 
 export default function App() {
+
+  const [result, setResult] = useState("");
+  
+  function WriteNumbers(){
+    let number = "";
+    for(var i = 0; i <= 100; i++){
+      number += i + " ";
+    }
+    setResult(number);
+}
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Button title="Выполнить" onPress={WriteNumbers} />
+      {result}
     </View>
   );
 }
@@ -14,8 +25,9 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    paddingTop: Constants.statusBarHeight,
+    backgroundColor: '#ecf0f1',
+    padding: 8,
   },
 });
